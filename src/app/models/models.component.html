@@ -1,0 +1,292 @@
+
+<div class="card flex justify-content-center">
+    <p-button (click)="showDialog()" icon="pi pi-external-link" label="Show"></p-button>
+    <div>
+        <form action="">
+            <p-dialog styleClass="Dialog-Box" header="Set Up Your Account" [(visible)]="visible" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+                <div class=" card-2 flex py-2 justify-content-center">
+                    <label for="Profile">Profile For</label>
+                    <p-dropdown name="selectedAccount" appendTo="body" [options]="Accounts" [(ngModel)]="selectedAccount" placeholder="Select Account" optionLabel="name" [style]="{ width: '100%' }" (onChange)="onSelect(selectedAccount?.name)"></p-dropdown>
+                </div>
+            </p-dialog>
+        </form>
+    </div>
+</div>
+
+<form action="" #SelfAccountForm="ngForm" >
+    <p-dialog styleClass="Dialog-Box" [(visible)]="Popup1" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+        <p-header> <span><i class="bi bi-arrow-left-circle" (click)="BackToPrevModal()"></i></span> Set Up Your Self Account</p-header>
+        <div class=" card-2 flex py-2 justify-content-center">
+            <label for="Profile">Profile For</label>
+            <p-dropdown name="selectedAccount" appendTo="body" [options]="Accounts" [(ngModel)]="selectedAccount" placeholder="Select Account" optionLabel="name" [style]="{ width: '100%' }" (onChange)="onSelect(selectedAccount?.name)"></p-dropdown>
+        </div>
+    
+       <div class="card-3 flex">
+        <label for="Profile">Profile Name</label>
+        <input name="FirstName" class="Input-left" type="text" pInputText [(ngModel)]="FirstName" />
+        <input name="LastName" type="text" pInputText [(ngModel)]="LastName" />
+       </div>
+    
+    
+    <div class="card-4 flex justify-content-space-between">
+        <label for="Gender">Gender</label>
+        <div class="p-checkbox">
+            <p-checkbox name="Gender" value="Male" [(ngModel)]="checked"  inputId="Male"></p-checkbox>
+           <span>Male</span>
+        </div>
+        <div class="p-checkbox left-checkbox">
+            <p-checkbox  name="Gender" value="Female" [(ngModel)]="checked"  inputId="Female"></p-checkbox>
+           <span>Female</span>
+        </div>
+    </div>
+
+    <div class=" card-2 flex py-2 justify-content-center">
+        <label for="Profile">Religion</label>
+        <p-dropdown name="selectedReligion" appendTo="body" [options]="Religion" [(ngModel)]="selectedReligion" placeholder="Select Religion" optionLabel="name" [style]="{ width: '100%' }"></p-dropdown>
+    </div>
+
+    <button type="button" class="SubmitBtn" [disabled]="!SelfAccountForm.valid " (click)="SelfAccountFormSubmit(SelfAccountForm.value)">Next</button>
+    </p-dialog>
+
+    <p-dialog styleClass="Dialog-Box" [(visible)]="Popup6" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+        <p-header> <span><i class="bi bi-arrow-left-circle" (click)="BackToPrevModal()"></i></span> Information</p-header>
+        <div class="card flex justify-content-center">
+            <label for="Profile">Date of Submit Form</label>
+            <p-calendar name="date" [(ngModel)]="date" [style]="{ width: '100%' }"></p-calendar>
+        </div>
+
+        <div class="card flex justify-content-center">
+            <label for="Profile">Country Name</label>
+            <p-dropdown name="selectedCountry" placeholder="Select Country" [options]="Countries" [(ngModel)]="selectedCountry" optionLabel="name" [style]="{ width: '100%' }"></p-dropdown>
+        </div>
+
+      <div class="card flex justify-content-center">
+          <label for="Profile">City Name</label>
+          <p-dropdown name="selectedCity" placeholder="Select City" [options]="cities" [(ngModel)]="selectedCity" optionLabel="name" [style]="{ width: '100%' }"></p-dropdown>
+      </div>
+
+    <button type="button" class="SubmitBtn" [disabled]="!SelfAccountForm.valid " (click)="SelfAccountFormSubmit(SelfAccountForm.value)">Next</button>
+    </p-dialog>
+
+    <p-dialog styleClass="Dialog-Box" [(visible)]="Popup7" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+        <p-header> <span><i class="bi bi-arrow-left-circle" (click)="BackToPrevModal()"></i></span> Information</p-header>
+        
+    <div class="card flex justify-content-center">
+        <label for="Profile">Mobile Number</label>
+        <input class="InputBox" name="MobileNumber" pInputText pKeyFilter="num" placeholder="Mobile Number" [(ngModel)]="MobileNumber"/>
+    </div>
+
+
+   <div class="card flex justify-content-center">
+    <label for="Profile">Home Address</label>
+       <textarea class="InputBox" name="HomeAddress" rows="5" cols="30" pInputTextarea [(ngModel)]="HomeAddress"></textarea>
+   </div>
+
+    <button type="button" class="SubmitBtn" [disabled]="!SelfAccountForm.valid " (click)="SelfAccountFormSubmit(SelfAccountForm.value)">Next</button>
+    </p-dialog>
+
+    <p-dialog styleClass="Dialog-Box" [(visible)]="Popup8" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+        <p-header> <span><i class="bi bi-arrow-left-circle" (click)="BackToPrevModal()"></i></span> Information</p-header>
+        
+    <div class="card flex justify-content-center">
+        <label for="Profile">Email Address</label>
+        <input class="InputBox" name="EmailAddress" pInputText  placeholder="Email Address" [(ngModel)]="EmailAddress"/>
+    </div>
+
+
+   <div class="card">
+    <label for="Profile">Password</label>
+    <p-password name="Password"  placeholder="Password" [(ngModel)]="Password" [feedback]="false" [toggleMask]="true" [style]="{ width: '100%' }"></p-password>
+   </div>
+
+   <div class="card">
+    <label for="Profile">Confirm Password</label>
+    <p-password name="ConfirmPassword" placeholder="Confirm Password" [(ngModel)]="ConfirmPassword" [feedback]="false" [toggleMask]="true" [style]="{ width: '100%' }"></p-password>
+   </div>
+
+    <button type="button" class="SubmitBtn" [disabled]="!SelfAccountForm.valid " (click)="SelfAccountFormSubmit(SelfAccountForm.value)">Next</button>
+    </p-dialog>
+
+
+
+    <p-dialog styleClass="Dialog-Box" [(visible)]="Popup10" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+        <p-header> <span><i class="bi bi-arrow-left-circle" (click)="EditSelfAccount()"></i></span> Check Your Account Data</p-header>
+        <div class=" card-2 flex py-2 justify-content-center">
+            <label for="Profile">Profile For</label>
+            <h3>{{selectedAccount?.name}}</h3>
+        </div>
+    
+       <div class="card-3 flex">
+        <label for="Profile">Profile Name</label>
+        <h3>{{FirstName + " " + LastName}}</h3>
+       </div>
+    
+    
+    <div class="card-4 flex justify-content-space-between">
+        <label for="Gender">Gender</label>
+        <h3>{{checked}}</h3>
+    </div>
+
+    <div class=" card-2 flex py-2 justify-content-center">
+        <label for="Profile">Religion</label>
+        <h3>{{selectedReligion?.name}}</h3>
+    </div>
+
+    <button type="button" class="SubmitBtn" [disabled]="!SelfAccountForm.valid " (click)="SelfAccountFormSubmit(SelfAccountForm.value)">Next</button>
+    </p-dialog>
+
+
+</form>
+
+<form action="" #BrotherAccountForm="ngForm" >
+    <p-dialog styleClass="Dialog-Box" [(visible)]="Popup2" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+        <p-header> <span><i class="bi bi-arrow-left-circle" (click)="BackToPrevModal()"></i></span> Set Up Your Self Account</p-header>
+        <div class=" card-2 flex py-2 justify-content-center">
+            <label for="Profile">Profile For</label>
+            <p-dropdown name="selectedAccount" appendTo="body" [options]="Accounts" [(ngModel)]="selectedAccount" placeholder="Select Account" optionLabel="name" [style]="{ width: '100%' }" (onChange)="onSelect(selectedAccount?.name)"></p-dropdown>
+        </div>
+    
+       <div class="card-3 flex">
+        <label for="Profile">Profile Name</label>
+        <input name="FirstName" class="Input-left" type="text" pInputText [(ngModel)]="FirstName" />
+        <input name="LastName" type="text" pInputText [(ngModel)]="LastName" />
+       </div>
+    
+    
+    <div class="card-4 flex justify-content-space-between">
+        <label for="Gender">Gender</label>
+        <div class="p-checkbox">
+            <p-checkbox name="Gender" value="Male" [(ngModel)]="checked"  inputId="Male"></p-checkbox>
+           <span>Male</span>
+        </div>
+        <div class="p-checkbox left-checkbox">
+            <p-checkbox  name="Gender" value="Female" [(ngModel)]="checked"  inputId="Female"></p-checkbox>
+           <span>Female</span>
+        </div>
+    </div>
+
+    <div class=" card-2 flex py-2 justify-content-center">
+        <label for="Profile">Religion</label>
+        <p-dropdown name="selectedReligion" appendTo="body" [options]="Religion" [(ngModel)]="selectedReligion" placeholder="Select Religion" optionLabel="name" [style]="{ width: '100%' }"></p-dropdown>
+    </div>
+
+    <button class="EditBtn"  icon="pi pi-external-link"  (click)="EditSelfAccount()">Edit</button>
+
+    <button class="SubmitBtn"  icon="pi pi-external-link"  (click)="SelfAccountFormSubmit(BrotherAccountForm.value)">Submit</button>
+    </p-dialog>
+</form>
+
+<form action="" #FriendAccountForm="ngForm" >
+    <p-dialog styleClass="Dialog-Box" [(visible)]="Popup3" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+        <p-header> <span><i class="bi bi-arrow-left-circle" (click)="BackToPrevModal()"></i></span> Set Up Your Self Account</p-header>
+        <div class=" card-2 flex py-2 justify-content-center">
+            <label for="Profile">Profile For</label>
+            <p-dropdown name="selectedAccount" appendTo="body" [options]="Accounts" [(ngModel)]="selectedAccount" placeholder="Select Account" optionLabel="name" [style]="{ width: '100%' }" (onChange)="onSelect(selectedAccount?.name)"></p-dropdown>
+        </div>
+    
+       <div class="card-3 flex">
+        <label for="Profile">Profile Name</label>
+        <input name="FirstName" class="Input-left" type="text" pInputText [(ngModel)]="FirstName" />
+        <input name="LastName" type="text" pInputText [(ngModel)]="LastName" />
+       </div>
+    
+    
+    <div class="card-4 flex justify-content-space-between">
+        <label for="Gender">Gender</label>
+        <div class="p-checkbox">
+            <p-checkbox name="Gender" value="Male" [(ngModel)]="checked"  inputId="Male"></p-checkbox>
+           <span>Male</span>
+        </div>
+        <div class="p-checkbox left-checkbox">
+            <p-checkbox  name="Gender" value="Female" [(ngModel)]="checked"  inputId="Female"></p-checkbox>
+           <span>Female</span>
+        </div>
+    </div>
+
+    <div class=" card-2 flex py-2 justify-content-center">
+        <label for="Profile">Religion</label>
+        <p-dropdown name="selectedReligion" appendTo="body" [options]="Religion" [(ngModel)]="selectedReligion" placeholder="Select Religion" optionLabel="name" [style]="{ width: '100%' }"></p-dropdown>
+    </div>
+
+    <button class="EditBtn"  icon="pi pi-external-link"  (click)="EditSelfAccount()">Edit</button>
+
+    <button class="SubmitBtn"  icon="pi pi-external-link"  (click)="SelfAccountFormSubmit(FriendAccountForm.value)">Submit</button>
+    </p-dialog>
+</form>
+
+
+<form action="" #NeighbourAccountForm="ngForm" >
+    <p-dialog styleClass="Dialog-Box" [(visible)]="Popup4" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+        <p-header> <span><i class="bi bi-arrow-left-circle" (click)="BackToPrevModal()"></i></span> Set Up Your Self Account</p-header>
+        <div class=" card-2 flex py-2 justify-content-center">
+            <label for="Profile">Profile For</label>
+            <p-dropdown name="selectedAccount" appendTo="body" [options]="Accounts" [(ngModel)]="selectedAccount" placeholder="Select Account" optionLabel="name" [style]="{ width: '100%' }" (onChange)="onSelect(selectedAccount?.name)"></p-dropdown>
+        </div>
+    
+       <div class="card-3 flex">
+        <label for="Profile">Profile Name</label>
+        <input name="FirstName" class="Input-left" type="text" pInputText [(ngModel)]="FirstName" />
+        <input name="LastName" type="text" pInputText [(ngModel)]="LastName" />
+       </div>
+    
+    
+    <div class="card-4 flex justify-content-space-between">
+        <label for="Gender">Gender</label>
+        <div class="p-checkbox">
+            <p-checkbox name="Gender" value="Male" [(ngModel)]="checked"  inputId="Male"></p-checkbox>
+           <span>Male</span>
+        </div>
+        <div class="p-checkbox left-checkbox">
+            <p-checkbox  name="Gender" value="Female" [(ngModel)]="checked"  inputId="Female"></p-checkbox>
+           <span>Female</span>
+        </div>
+    </div>
+
+    <div class=" card-2 flex py-2 justify-content-center">
+        <label for="Profile">Religion</label>
+        <p-dropdown name="selectedReligion" appendTo="body" [options]="Religion" [(ngModel)]="selectedReligion" placeholder="Select Religion" optionLabel="name" [style]="{ width: '100%' }"></p-dropdown>
+    </div>
+
+    <button class="EditBtn"  icon="pi pi-external-link"  (click)="EditSelfAccount()">Edit</button>
+
+    <button class="SubmitBtn"  icon="pi pi-external-link"  (click)="SelfAccountFormSubmit(NeighbourAccountForm.value)">Submit</button>
+    </p-dialog>
+</form>
+
+<form action="" #OtherAccountForm="ngForm" >
+    <p-dialog styleClass="Dialog-Box" [(visible)]="Popup5" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+        <p-header> <span><i class="bi bi-arrow-left-circle" (click)="BackToPrevModal()"></i></span> Set Up Your Self Account</p-header>
+        <div class=" card-2 flex py-2 justify-content-center">
+            <label for="Profile">Profile For</label>
+            <p-dropdown name="selectedAccount" appendTo="body" [options]="Accounts" [(ngModel)]="selectedAccount" placeholder="Select Account" optionLabel="name" [style]="{ width: '100%' }" (onChange)="onSelect(selectedAccount?.name)"></p-dropdown>
+        </div>
+    
+       <div class="card-3 flex">
+        <label for="Profile">Profile Name</label>
+        <input name="FirstName" class="Input-left" type="text" pInputText [(ngModel)]="FirstName" />
+        <input name="LastName" type="text" pInputText [(ngModel)]="LastName" />
+       </div>
+    
+    
+    <div class="card-4 flex justify-content-space-between">
+        <label for="Gender">Gender</label>
+        <div class="p-checkbox">
+            <p-checkbox name="Gender" value="Male" [(ngModel)]="checked"  inputId="Male"></p-checkbox>
+           <span>Male</span>
+        </div>
+        <div class="p-checkbox left-checkbox">
+            <p-checkbox  name="Gender" value="Female" [(ngModel)]="checked"  inputId="Female"></p-checkbox>
+           <span>Female</span>
+        </div>
+    </div>
+
+    <div class=" card-2 flex py-2 justify-content-center">
+        <label for="Profile">Religion</label>
+        <p-dropdown name="selectedReligion" appendTo="body" [options]="Religion" [(ngModel)]="selectedReligion" placeholder="Select Religion" optionLabel="name" [style]="{ width: '100%' }"></p-dropdown>
+    </div>
+
+    <button class="EditBtn"  icon="pi pi-external-link"  (click)="EditSelfAccount()">Edit</button>
+
+    <button class="SubmitBtn"  icon="pi pi-external-link"  (click)="SelfAccountFormSubmit(OtherAccountForm.value)">Submit</button>
+    </p-dialog>
+</form>
